@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
@@ -189,4 +190,5 @@ class CatalogController extends Controller
     public function getEdit($id){
         return view('catalog.edit', array('id'=>$id));
     }
+
 }
