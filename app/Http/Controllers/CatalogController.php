@@ -170,7 +170,7 @@ class CatalogController extends Controller
     )
 );
     public function getIndex(){
-
+        
         return view('catalog.index', [
             'arrayPeliculas' => $this->arrayPeliculas
         ]);
