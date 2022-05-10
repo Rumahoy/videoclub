@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use App\Models\Orders;
 
 class CatalogController extends Controller
 {
-    private $arrayPeliculas = array(
+    /*private $arrayPeliculas = array(
     array(
         'title' => 'El padrino',
         'year' => '1972',
@@ -168,18 +169,24 @@ class CatalogController extends Controller
         'rented' => true,
         'synopsis' => 'Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder descargar sus frustaciones y su ira, que tendrá un éxito arrollador.'
     )
-);
+);*/
     public function getIndex(){
-        
+
+        $movies = Movie::all();
+
         return view('catalog.index', [
-            'arrayPeliculas' => $this->arrayPeliculas
+            'arrayPeliculas' => $movies
         ]);
+
     }
 
     public function getShow($id){
+
+        $movie = Movie::find($id);
+
         return view('catalog.show', [
             'id'=> $id,
-            'pelicula' => $this->arrayPeliculas[$id]
+            'pelicula' => $movie
         ]);
     }
 
@@ -188,7 +195,13 @@ class CatalogController extends Controller
     }
 
     public function getEdit($id){
-        return view('catalog.edit', array('id'=>$id));
+
+        $movie = Movie::find($id);
+
+        return view('catalog.edit', [
+            'id'=> $id,
+            'pelicula' => $movie
+        ]);
     }
 
 }
