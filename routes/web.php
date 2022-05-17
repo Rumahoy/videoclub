@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CatalogController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,30 +26,12 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Auth::routes();
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-/*Route::get('login', function () {
-    return view('auth.login');
-});*/
-
-/*Route::get('logout', function () {
-    return view('auth.logout');
-});*/
-
-// Route::get('/', [HomeController::class, 'getHome']);
 Route::get('catalog', [CatalogController::class, 'getIndex']);
 Route::get('catalog/show/{id}', [CatalogController::class, 'getShow']);
 Route::get('catalog/create', [CatalogController::class, 'getCreate']);
