@@ -28,7 +28,7 @@ require __DIR__.'/auth.php';
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -49,7 +49,7 @@ Route::get('/', function () {
     return view('auth.logout');
 });*/
 
-Route::get('/', [HomeController::class, 'getHome']);
+// Route::get('/', [HomeController::class, 'getHome']);
 Route::get('catalog', [CatalogController::class, 'getIndex']);
 Route::get('catalog/show/{id}', [CatalogController::class, 'getShow']);
 Route::get('catalog/create', [CatalogController::class, 'getCreate']);
