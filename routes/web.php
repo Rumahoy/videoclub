@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\CatalogController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,17 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', function () {
-    return view('auth.login');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('logout', function () {
-    return view('auth.logout');
-});
-
-Route::get('/', [HomeController::class, 'getHome']);
-Route::get('catalog', [CatalogController::class, 'getIndex']);
-Route::get('catalog/show/{id}', [CatalogController::class, 'getShow']);
-Route::get('catalog/create', [CatalogController::class, 'getCreate']);
-Route::get('catalog/edit/{id}', [CatalogController::class, 'getEdit']);
-
+require __DIR__.'/auth.php';
